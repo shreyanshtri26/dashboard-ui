@@ -1,15 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Settings, Plus, Sun, Moon } from "lucide-react";
+import { Settings, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { AddWidgetDialog } from "./AddWidgetDialog";
 import { useDashboardStore } from "@/store/dashboardData";
 
 const DashboardHeader = () => {
-  const { dashboard, addWidget } = useDashboardStore();
   const { theme, setTheme } = useTheme();
-  
-  // Get the first category to add widgets to from the header
-  const firstCategoryId = dashboard.categories.length > 0 ? dashboard.categories[0].id : '';
   
   return (
     <header className="sticky top-0 z-10 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -20,9 +15,6 @@ const DashboardHeader = () => {
         </div>
         
         <div className="flex items-center gap-2">
-          {firstCategoryId && (
-            <AddWidgetDialog categoryId={firstCategoryId} onAddWidget={addWidget} />
-          )}
           <Button
             variant="ghost"
             size="icon"
